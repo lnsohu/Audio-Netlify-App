@@ -1,6 +1,9 @@
 {
   "name": "leancloud-travel-app",
   "version": "1.0.0",
+  "engines": {
+    "node": "18.x" // 指定 Node.js 18.x 版本
+  },
   "scripts": {
     "start": "node server.js",
     "build": "react-scripts build",
