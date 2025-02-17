@@ -3,9 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LeanCloud Travel App</title>
+  <title>Hello World App</title>
 </head>
 <body>
-  <div id="root"></div>
+  <h1>Hello World from Frontend</h1>
+  <div id="message"></div>
+  <script>
+    // 使用 Fetch API 从后端获取 "Hello World" 字符串
+    fetch('/')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('message').innerText = data;
+      });
+  </script>
 </body>
 </html>
