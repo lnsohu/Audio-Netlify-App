@@ -1,20 +1,13 @@
 {
-  "name": "react-score-app",
+  "name": "hello-world-app",
   "version": "1.0.0",
-  "description": "A simple score system with React and LeanCloud",
-  "main": "server.js",
+  "description": "A simple Hello World app using LeanCloud",
+  "main": "app.js",
   "scripts": {
-    "start": "node server.js",
-    "build": "react-scripts build",
-    "heroku-postbuild": "npm run build"
+    "start": "node app.js"
   },
   "dependencies": {
-    "express": "^4.18.2",
-    "leanengine": "^3.6.0",
-    "leancloud-storage": "^4.12.0",
-    "ejs": "~2.5.7"
-  },
-  "engines": {
-    "node": "16.x"
+    "express": "^4.17.1",
+    "leanengine": "^2.0.0"
   }
 }
