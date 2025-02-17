@@ -10,9 +10,9 @@
   },
   "dependencies": {
     "express": "^4.18.2",
-    "leanengine": "^3.6.0",  // 使用有效的版本
-    "leancloud-storage": "^4.12.0",  // 添加 leancloud-storage
-    "ejs": "~2.5.7"  // 添加 ejs
+    "leanengine": "^3.6.0",
+    "leancloud-storage": "^4.12.0",
+    "ejs": "~2.5.7"
   },
   "engines": {
     "node": "16.x"
