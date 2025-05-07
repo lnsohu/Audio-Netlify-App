@@ -1,9 +1,8 @@
 const { writeFile } = require('fs').promises;
 const { join } = require('path');
 const { tmpdir } = require('os');
-const Busboy = require('busboy');
 
-exports.handler = async function(event, context) {
+exports.handler = async (event) => {
   // 只允许POST请求
   if (event.httpMethod !== 'POST') {
     return {
@@ -13,15 +12,15 @@ exports.handler = async function(event, context) {
   }
 
   try {
-    // 解析multipart/form-data数据
-    const fileData = await parseMultipartForm(event);
+    // 直接从body获取数据
+    const audioData = Buffer.from(event.body, event.isBase64Encoded ? 'base64' : 'binary');
     
     // 生成唯一文件名
     const fileName = `recording_${Date.now()}.wav`;
     const filePath = join(tmpdir(), fileName);
     
     // 保存文件到临时目录
-    await writeFile(filePath, fileData);
+    await writeFile(filePath, audioData);
     
     return {
       statusCode: 200,
@@ -41,41 +40,3 @@ exports.handler = async function(event, context) {
     };
   }
 };
-
-// 解析multipart/form-data数据
-function parseMultipartForm(event) {
-  return new Promise((resolve, reject) => {
-    const busboy = new Busboy({
-      headers: {
-        'content-type': event.headers['content-type']
-      }
-    });
-    
-    let fileData = null;
-
-    busboy.on('file', (fieldname, file, filename, encoding, mimetype) => {
-      const chunks = [];
-      file.on('data', (chunk) => {
-        chunks.push(chunk);
-      });
-      file.on('end', () => {
-        fileData = Buffer.concat(chunks);
-      });
-    });
-
-    busboy.on('error', (error) => {
-      reject(error);
-    });
-
-    busboy.on('finish', () => {
-      if (fileData) {
-        resolve(fileData);
-      } else {
-        reject(new Error('未接收到录音文件'));
-      }
-    });
-
-    busboy.write(event.body, event.isBase64Encoded ? 'base64' : 'binary');
-    busboy.end();
-  });
-}
