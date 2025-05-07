@@ -42,7 +42,7 @@ async function toggleRecording() {
 
 async function startRecording() {
   try {
-    statusElement.textContent = '准备录音...';
+    statusElement.textContent = 'Ready? Go...';
     const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
     
     mediaRecorder = new MediaRecorder(stream);
@@ -61,7 +61,7 @@ async function startRecording() {
     mediaRecorder.start(100); // 每100ms收集一次数据
     isRecording = true;
     updateButtonState();
-    statusElement.textContent = '录音中...';
+    statusElement.textContent = 'Recording...';
   } catch (error) {
     console.error('启动录音失败:', error);
     statusElement.textContent = `录音失败: ${error.message}`;
@@ -72,13 +72,13 @@ function stopRecording() {
   mediaRecorder.stop();
   isRecording = false;
   updateButtonState();
-  statusElement.textContent = '正在处理录音...';
+  statusElement.textContent = 'Processing...';
   mediaRecorder.stream.getTracks().forEach(track => track.stop());
 }
 
 function updateButtonState() {
   recordButton.classList.toggle('recording', isRecording);
-  recordButton.querySelector('.text').textContent = isRecording ? '停止录音' : '开始录音';
+  recordButton.querySelector('.text').textContent = isRecording ? 'Stop Recording' : 'Start Recording';
 }
 
 function playAudio(blob) {
@@ -89,7 +89,7 @@ function playAudio(blob) {
 
 async function saveRecording(blob) {
   try {
-    statusElement.textContent = '正在保存...';
+    statusElement.textContent = 'Saving...';
     const formData = new FormData();
     formData.append('audio', blob, `recording_${Date.now()}.wav`);
     
