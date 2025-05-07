@@ -1,13 +1,11 @@
 {
-  "name": "hello-world-app",
+  "name": "my-recording-app",
   "version": "1.0.0",
-  "description": "A simple Hello World app using LeanCloud",
-  "main": "app.js",
+  "description": "A simple recording web app for Netlify",
   "scripts": {
-    "start": "node app.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "express": "^4.17.1",
-    "leanengine": "^2.0.0"
+    "busboy": "^1.6.0"
   }
 }
