@@ -101,7 +101,7 @@ async function saveRecording(blob) {
     if (!response.ok) throw new Error('服务器响应异常');
     
     const result = await response.json();
-    statusElement.textContent = '保存成功!';
+    statusElement.textContent = 'Saved Successfully!';
     console.log('保存结果:', result);
   } catch (error) {
     console.error('保存失败:', error);
