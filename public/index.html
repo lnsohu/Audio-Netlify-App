@@ -3,18 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hello World App</title>
+  <title>录音应用</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Hello World from Frontend</h1>
-  <div id="message"></div>
-  <script>
-    // 使用 Fetch API 从后端获取 "Hello World" 字符串
-    fetch('/')
-      .then(response => response.text())
-      .then(data => {
-        document.getElementById('message').innerText = data;
-      });
-  </script>
+  <div class="container">
+    <h1>录音应用</h1>
+    <button id="recordButton" class="record-button">
+      <span class="icon">🎤</span>
+      <span class="text">开始录音</span>
+    </button>
+    <div id="status" class="status"></div>
+    <audio id="audioPlayer" controls style="display: none;"></audio>
+  </div>
+  <script src="script.js"></script>
 </body>
 </html>
